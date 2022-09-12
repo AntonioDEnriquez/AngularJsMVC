@@ -1,0 +1,45 @@
+﻿<style>
+    .form-control {
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+</style>
+<div class="card-body animated fadeIn">
+    <form class="form-control" ng-submit="updateUser(user)" name="frmEditUser" novalidate>
+        <h4 class="card-title">Modificar usuario</h4>
+        <hr />
+        <div class="form-group mt-3">
+            <label class="col-lg-2 form-label">Nombre</label>
+            <input type="text" class="form-control text-start" placeholder="Ingrese el nombre" ng-model="user.Nombre" name="nombre" ng-maxlength="40" required />
+            <span class="text-danger" ng-show="(frmEditUser.nombre.$touched || frmEditUser.nombre.$dirty) && frmEditUser.nombre.$invalid">
+                <span ng-show="frmEditUser.nombre.$error.required">El nombre es requerido</span>
+                <span ng-show="frmEditUser.nombre.$error.maxlength">El nombre debe de ser de maximo 40 caracteres</span>
+            </span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label class="col-lg-2 form-label">Email</label>
+            <input type="email" class="form-control text-start" placeholder="example@example.com" ng-model="user.Email" name="email" ng-maxlength="30" required />
+            <span class="text-danger" ng-show="(frmEditUser.email.$touched || frmEditUser.email.$dirty) && frmEditUser.email.$invalid">
+                <span ng-show="frmEditUser.email.$error.required">El email es requerido</span>
+                <span ng-show="frmEditUser.email.$error.email">Direccion de correo invalida</span>
+                <span ng-show="frmEditUser.email.$error.maxlength">El email debe de ser de maximo 30 caracteres</span>
+            </span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label class="col-lg-2 form-label">Domicilio</label>
+            <input type="text" class="form-control text-start" placeholder="Ingrese el domicilio" ng-model="user.Domicilio" name="domicilio" required />
+            <span class="text-danger" ng-show="(frmEditUser.domicilio.$touched || frmEditUser.domicilio.$dirty) && frmEditUser.domicilio.$invalid">
+                <span ng-show="frmEditUser.domicilio.$error.required">El domicilio es requerido</span>
+            </span>
+        </div>
+
+        <div class="form-group mt-3">
+            <div class="col-lg-10 text-center m-auto">
+                <input type="submit" class="btn btn-success" value="Actualizar Usuario" ng-if="states.showUpdateButton" ng-disabled="frmEditUser.$pristine || frmEditUser.$invalid"/>
+                <a href="#/" class="btn btn-danger">Cancelar</a>
+            </div>
+        </div>
+    </form>
+</div>

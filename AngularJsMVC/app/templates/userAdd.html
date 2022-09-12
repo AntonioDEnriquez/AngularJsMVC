@@ -1,0 +1,50 @@
+﻿<style>
+    .form-control {
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+</style>
+<div class="card-body animated fadeIn">
+    <form class="form-control" ng-submit="createUser(user)" name="frmAddUser" novalidate>
+        <h4 class="card-title">Crear nuevo usuario</h4>
+        <hr />
+        <div class="form-group mt-3">
+            <label class="col-lg-2 form-label">Nombre</label>
+            <input type="text" class="form-control text-start" placeholder="Ingrese el nombre" ng-model="user.Nombre" name="nombre" ng-maxlength="40" required/>
+            <span class="text-danger" ng-show="(frmAddUser.nombre.$touched || frmAddUser.nombre.$dirty) && frmAddUser.nombre.$invalid">
+                <span ng-show="frmAddUser.nombre.$error.required">El nombre es requerido</span>
+                <span ng-show="frmAddUser.nombre.$error.maxlength">El nombre debe de ser de maximo 40 caracteres</span>
+            </span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label class="col-lg-2 form-label">Email</label>
+            <input type="email" class="form-control text-start" placeholder="example@example.com" ng-model="user.Email" name="email" ng-maxlength="30" required />
+            <span class="text-danger" ng-show="(frmAddUser.email.$touched || frmAddUser.email.$dirty) && frmAddUser.email.$invalid">
+                <span ng-show="frmAddUser.email.$error.required">El email es requerido</span>
+                <span ng-show="frmAddUser.email.$error.email">Direccion de correo invalida</span>
+                <span ng-show="frmAddUser.email.$error.maxlength">El email debe de ser de maximo 30 caracteres</span>
+            </span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label class="col-lg-2 form-label">Domicilio</label>
+            <input type="text" class="form-control text-start" placeholder="Ingrese el domicilio" ng-model="user.Domicilio" name="domicilio" required />
+            <span class="text-danger" ng-show="(frmAddUser.domicilio.$touched || frmAddUser.domicilio.$dirty) && frmAddUser.domicilio.$invalid">
+                <span ng-show="frmAddUser.domicilio.$error.required">El domicilio es requerido</span>
+            </span>
+        </div>
+
+        <div class="form-group mt-3">
+            <div class="col-lg-10 text-center m-auto">
+                <input type="submit" class="btn btn-success" value="Registrar Usuario" ng-disabled="frmAddUser.$invalid"/>
+                <a href="#/" class="btn btn-danger">Cancelar</a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+
+

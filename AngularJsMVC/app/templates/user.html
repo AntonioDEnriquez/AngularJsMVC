@@ -1,0 +1,102 @@
+﻿<div class="col m-4 mt-4">
+    <div class="card">
+        <div class="card-body animated fadeIn fast">
+            <div class="row">
+                <div class="col-4">
+                    <h2>Usuarios registrado</h2>
+                </div>
+                <div class="col-4">
+                    <div class="col-11 form-group">
+                        <label name="buscar">Buscar</label>
+                        <label class="col-9">
+                            <input type="text" class="form-control" placeholder="Buscar" name="buscar" ng-model="searchText" />
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="col-12 form-group">
+                        Mostrar
+                        <label class="col-5">
+                            <select class="form-control" ng-model="itemsPerPage">
+                                <option ng-value="1">1</option>
+                                <option ng-value="2">2</option>
+                                <option ng-value="5">5</option>
+                                <option ng-value="10">10</option>
+                                <option ng-value="25">25</option>
+                                <option ng-value="50">50</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <div class="text-end">
+                        <a class="btn btn-primary" href="#/adduser">Registrar Usuario</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="table-responsive mt-2">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th ng-click="sortBy('Nombre')">
+                                Nombre
+                                <span ng-show="sortColumn=='Nombre'">
+                                    <svg ng-if="reverse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12.354 8.854l5.792 5.792a.5.5 0 01-.353.854H6.207a.5.5 0 01-.353-.854l5.792-5.792a.5.5 0 01.708 0z"></path></svg>
+                                    <svg ng-if="!reverse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.646 15.146L5.854 9.354a.5.5 0 01.353-.854h11.586a.5.5 0 01.353.854l-5.793 5.792a.5.5 0 01-.707 0z"></path></svg>
+                                </span>
+                            </th>
+                            <th ng-click="sortBy('Email')">
+                                Email
+                                <span ng-show="sortColumn=='Email'">
+                                    <svg ng-if="reverse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12.354 8.854l5.792 5.792a.5.5 0 01-.353.854H6.207a.5.5 0 01-.353-.854l5.792-5.792a.5.5 0 01.708 0z"></path></svg>
+                                    <svg ng-if="!reverse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.646 15.146L5.854 9.354a.5.5 0 01.353-.854h11.586a.5.5 0 01.353.854l-5.793 5.792a.5.5 0 01-.707 0z"></path></svg>
+                                </span>
+                            </th>
+                            <th ng-click="sortBy('Domicilio')">
+                                Domicilio
+                                <span ng-show="sortColumn=='Domicilio'">
+                                    <svg ng-if="reverse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12.354 8.854l5.792 5.792a.5.5 0 01-.353.854H6.207a.5.5 0 01-.353-.854l5.792-5.792a.5.5 0 01.708 0z"></path></svg>
+                                    <svg ng-if="!reverse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.646 15.146L5.854 9.354a.5.5 0 01.353-.854h11.586a.5.5 0 01.353.854l-5.793 5.792a.5.5 0 01-.707 0z"></path></svg>
+                                </span>
+                            </th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="user in users | orderBy: sortColumn: reverse | limitTo: itemsPerPage: (currentPage - 1) * itemsPerPage">
+                            <td>{{user.Nombre}}</td>
+                            <td>{{user.Email}}</td>
+                            <td>{{user.Domicilio}}</td>
+                            <td>
+                                <a href="#/edituser/{{user.ID}}">Editar</a>
+                                <a href="" ng-click="deleteUser(user.ID)">Eliminar</a>
+                            </td>
+                        </tr>
+                        <tr ng-if="!users || users.length == 0">
+                            <td colspan="4" style="text-align: center">
+                                No existe ningun usuario
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col">
+                        <div class="text-start">
+                            <pre>Page: {{currentPage}}/{{numPages}}</pre>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-end">
+                            <ul uib-pagination total-items="users.length" items-per-page="itemsPerPage" ng-model="currentPage" max-size="5" boundary-links="true" num-pages="numPages"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
